@@ -50,7 +50,10 @@ defmodule Mssqlex.Protocol do
       {"Server", build_server_address(server_address, instance_name, port)},
       {"Database", opts[:database] || System.get_env("MSSQL_DB")},
       {"UID", opts[:username] || System.get_env("MSSQL_UID")},
-      {"PWD", opts[:password] || System.get_env("MSSQL_PWD")}
+      {"PWD", opts[:password] || System.get_env("MSSQL_PWD")},
+      {"Encrypt", opts[:encrypt] || System.get_env("MSSQL_ENCRYPT")},
+      {"TrustServerCertificate", opts[:trust_server_certificate] || System.get_env("MSSQL_TRUST_SERVER_CERTIFICATE")},
+      {"Connection Timeout", opts[:connection_timeout] || System.get_env("MSSQL_CONNECTION_TIMEOUT")}
     ]
     conn_str = Enum.reduce(conn_opts, "", fn {key, value}, acc ->
       acc <> "#{key}=#{value};" end)
